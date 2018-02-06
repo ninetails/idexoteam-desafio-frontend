@@ -11,9 +11,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "coverage": "npm run test -- --coverage",
     "eject": "react-scripts eject",
     "eslint": "eslint src",
-    "prepush": "npm run eslint"
+    "prepush": "CI=true npm run coverage && npm run eslint"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
@@ -23,5 +24,15 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "husky": "^0.14.3"
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 0,
+        "functions": 0,
+        "lines": 0,
+        "statements": 0
+      }
+    }
   }
 }
