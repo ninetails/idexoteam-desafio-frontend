@@ -16,9 +16,11 @@
     "eslint": "eslint src",
     "prepush": "CI=true npm run coverage && npm run eslint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "analyze": "NODE_ENV=production node analyzer.js"
   },
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
     "babel-eslint": "^8.2.1",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
@@ -26,7 +28,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "husky": "^0.14.3",
-    "@kadira/storybook": "^2.21.0"
+    "webpack-bundle-analyzer": "^2.10.0"
   },
   "jest": {
     "coverageThreshold": {
