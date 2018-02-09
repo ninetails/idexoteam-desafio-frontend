@@ -1,9 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { StyleRoot } from 'radium';
+import Router from './routes';
 
 const App = () => (
-  <Fragment>
-    Blank app
-  </Fragment>
+  <StyleRoot>
+    <Router />
+  </StyleRoot>
 );
 
 export default App;
