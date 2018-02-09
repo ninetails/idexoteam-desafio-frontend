@@ -1,6 +1,7 @@
 {
   "name": "desafio-frontend",
   "version": "0.1.0",
+  "homepage": "https://starkdex-2e3b2.firebaseapp.com/",
   "private": true,
   "dependencies": {
     "fecha": "^2.3.2",
@@ -22,7 +23,8 @@
     "prepush": "CI=true npm run coverage && npm run eslint",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "analyze": "NODE_ENV=production node analyzer.js"
+    "analyze": "NODE_ENV=production node analyzer.js",
+    "deploy": "npm run build && firebase deploy"
   },
   "devDependencies": {
     "@storybook/addon-links": "^3.3.12",
