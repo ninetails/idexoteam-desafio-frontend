@@ -2,20 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { Link } from 'react-router-dom';
-import fecha from 'fecha';
+import ComicListItemTime from '../../atoms/ComicListItemTime';
+import ComicListItemThumb from '../../atoms/ComicListItemThumb';
+import ComicListItemTitle from '../../atoms/ComicListItemTitle';
+import ComicListItemDescription from '../../atoms/ComicListItemDescription';
 
 const styles = {
   description: {},
-  image: {
-    display: 'inline-block',
-    float: 'left',
-    height: 'auto',
-    marginRight: '.5em',
-    maxWidth: '70px'
-  },
   li: {
+    color: '#fff',
     display: 'inline-block',
-    listStyleType: 'none'
+    listStyleType: 'none',
+    marginBottom: '.5em'
   },
   link: {
     color: 'inherit',
@@ -45,33 +43,23 @@ const styles = {
       top: 0,
       zIndex: -1
     }
-  },
-  time: {
-    fontSize: '.8em',
-    fontWeight: 'bold'
-  },
-  title: {
-    margin: 0,
-    fontSize: '1em'
   }
 };
 
 const ComicListItem = ({ data }) => {
-  const thumbUrl = `${data.thumbnail.path}.${data.thumbnail.extension}`;
-  const onsaleDate = data.dates.find(date => date.type === 'onsaleDate').date;
-  console.log(data, onsaleDate);
+  const thumbUrl = data.thumbnail ? `${data.thumbnail.path}.${data.thumbnail.extension}` : null;
+  const onsaleDate = data.dates && data.dates.find(date => date.type === 'onsaleDate').date;
 
   return (
     <li style={styles.li}>
       <Link to={`/${data.id}`} style={{ ...styles.link }}>
-        <div style={[styles.link.bg, { backgroundImage: `url('${thumbUrl}')` }]} aria-hidden="true" />
+        {thumbUrl && <div style={[styles.link.bg, { backgroundImage: `url('${thumbUrl}')` }]} aria-hidden="true" />}
         <div style={styles.link.gradient} aria-hidden="true" />
-        <img src={thumbUrl} alt={`Capa da edição ${data.title}`} style={styles.image} />
-        <time dateTime={onsaleDate} style={styles.time}>
-          {fecha.format(fecha.parse(onsaleDate, 'YYYY-MM-DDTHH:mm:ss'), 'DD/MM/YYYY')}
-        </time>
-        <h3 style={styles.title}>{data.title}</h3>
-        <p>{data.description}</p>
+        {thumbUrl && <ComicListItemThumb src={thumbUrl} alt={`Capa da edição ${data.title}`} />}
+        {onsaleDate && <ComicListItemTime dateTime={onsaleDate} />}
+        <ComicListItemTitle>{data.title}</ComicListItemTitle>
+        <ComicListItemDescription>{data.description}</ComicListItemDescription>
+        <div style={{ clear: 'both' }} aria-hidden="true" />
       </Link>
     </li>
   );
@@ -79,7 +67,17 @@ const ComicListItem = ({ data }) => {
 
 ComicListItem.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.number.isRequired
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    thumbnail: PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired
+    }),
+    dates: PropTypes.arrayOf(PropTypes.shape({
+      type: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired
+    }))
   }).isRequired
 };
 

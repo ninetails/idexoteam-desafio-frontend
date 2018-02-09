@@ -19,7 +19,7 @@ const styles = {
 
 export class ComicList extends PureComponent {
   static propTypes = {
-    next: PropTypes.func.isRequired,
+    next: PropTypes.func,
     registerScroll: PropTypes.func,
     unregisterScroll: PropTypes.func,
     data: PropTypes.arrayOf(PropTypes.shape({
@@ -29,6 +29,7 @@ export class ComicList extends PureComponent {
 
   static defaultProps = {
     data: [],
+    next: () => undefined,
     registerScroll: null,
     unregisterScroll: null
   };
