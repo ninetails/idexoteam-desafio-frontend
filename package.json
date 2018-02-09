@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "fecha": "^2.3.2",
     "prop-types": "^15.6.0",
     "radium": "^0.21.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.0"
+    "react-scripts": "1.1.0",
+    "urijs": "^1.19.0"
   },
   "scripts": {
     "start": "react-scripts start",
