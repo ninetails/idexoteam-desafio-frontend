@@ -12,9 +12,14 @@ const styles = {
     padding: 0
   },
   wrapper: {
+    flex: '1 0 100%',
     height: '100%',
     overflow: 'auto',
-    width: '100%'
+    width: '100vw',
+    '@media (min-width: 768px)': {
+      flex: '1 1',
+      width: 'auto'
+    }
   }
 };
 
@@ -25,14 +30,18 @@ export class ComicList extends PureComponent {
     unregisterScroll: PropTypes.func,
     data: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number
-    }))
+    })),
+    location: PropTypes.shape({
+      pathname: PropTypes.string
+    })
   };
 
   static defaultProps = {
     data: [],
     next: () => undefined,
     registerScroll: null,
-    unregisterScroll: null
+    unregisterScroll: null,
+    location: null,
   };
 
   componentDidMount() {
@@ -61,7 +70,7 @@ export class ComicList extends PureComponent {
   }
 
   render() {
-    const { data } = this.props;
+    const { data, location } = this.props;
 
     if (!data.length) {
       return <p>Carregando...</p>;
@@ -70,7 +79,9 @@ export class ComicList extends PureComponent {
     return (
       <div style={[styles.wrapper]}>
         <ul ref={this.refList} style={[styles.list]}>
-          {data.map(entry => <ComicListItem key={entry.id} data={entry} onEnter={this.onEnter} />)}
+          {data.map(entry => (
+            <ComicListItem key={entry.id} location={location} data={entry} onEnter={this.onEnter} />
+          ))}
         </ul>
       </div>
     );

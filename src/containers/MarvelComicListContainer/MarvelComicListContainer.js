@@ -61,6 +61,7 @@ export default class MarvelComicListContainer extends PureComponent {
 
     return (
       <ComicList
+        {...this.props}
         setLimit={this.setLimit}
         next={this.next}
         data={this.state.data}

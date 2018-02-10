@@ -9,9 +9,14 @@ import StarkDexContainer from '../organisms/StarkDexContainer';
 
 export default () => (
   <Router>
-    <StarkDexContainer>
-      <MarvelComicListContainer />
-      <Route path="/:comicId" component={ComicDetails} />
-    </StarkDexContainer>
+    <Route
+      path="/"
+      component={props => (
+        <StarkDexContainer {...props}>
+          <MarvelComicListContainer {...props} />
+          <Route path="/:comicId" component={ComicDetails} />
+        </StarkDexContainer>
+      )}
+    />
   </Router>
 );

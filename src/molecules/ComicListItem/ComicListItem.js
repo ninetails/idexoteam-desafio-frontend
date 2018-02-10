@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Waypoint from 'react-waypoint';
 import ComicListItemTime from '../../atoms/ComicListItemTime';
 import ComicListItemThumb from '../../atoms/ComicListItemThumb';
@@ -35,7 +35,7 @@ const styles = {
       zIndex: -2
     },
     gradient: {
-      backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.2), #000)',
+      backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.6), #000)',
       bottom: 0,
       content: '',
       left: 0,
@@ -109,16 +109,23 @@ export class ComicListItem extends PureComponent {
 
     return (
       <li style={styles.li}>
-        <Link to={`/${data.id}`} style={{ ...styles.link }}>
+        <NavLink to={`/${data.id}`} style={{ ...styles.link }} activeStyle={{ border: '1px solid #eee' }}>
+
           {thumbUrl && <div style={[styles.link.bg, { backgroundImage: `url('${thumbUrl}')` }]} aria-hidden="true" />}
           <div style={styles.link.gradient} aria-hidden="true" />
+
           {thumbUrl && <ComicListItemThumb src={thumbUrl} alt={`Capa da edição ${data.title}`} />}
+
           {onsaleDate && <ComicListItemTime dateTime={onsaleDate} />}
+
           <ComicListItemTitle>{data.title}</ComicListItemTitle>
+
           <ComicListItemDescription>{data.description}</ComicListItemDescription>
+
           <div style={styles.more}>ver detalhes &raquo;</div>
+
           <div style={{ clear: 'both' }} aria-hidden="true" />
-        </Link>
+        </NavLink>
       </li>
     );
   }
