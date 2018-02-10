@@ -1,9 +1,58 @@
-# Desafio Frontend
-Crie uma aplicação utilizando as Api's do portal Developers da Marvel. As tarefas são as seguintes:
+# Desafio Frontend (idexoteam)
 
 ## Preview
 
 https://starkdex-2e3b2.firebaseapp.com/
+
+## Desenvolvimento
+
+Este aplicativo de página única (Single Page Application) foi feito utilizando [create-react-app](https://github.com/facebook/create-react-app) com algumas modificações.
+
+Desenvolvi por pura curiosidade, dado que estou à procura de oportunidades. Demorei além do tempo estimado, porém não desenvolvi ininterruptamente. Também não espero ser selecionado.
+
+Para estilos, optei por css-in-js (inline + utilizando [Radium](https://github.com/FormidableLabs/radium)). Possui alguns bugs e não possui testes automatizados. Também não me preocupei muito em relação a tratamento de erros, fazendo o "caminho feliz". Claro que há muita coisa a melhorar, e fiz o layout por conta própria enquanto desenvolvia (sem muito estudo).
+
+## Comandos
+
+Após clonar, rodar `npm install` para baixar todas as dependëncias.
+
+**Obs** é recomendável copiar o arquivo `.env.example` para `.env.local` e preencher o campo referente ao Public Key.
+
+### npm start
+
+Roda em modo de desenvolvimento
+
+### npm run build
+
+Cria recursos e artefatos para produção
+
+### npm test (ignorar)
+
+Roda o Jest. Não foi adicionado nenhum teste.
+
+### npm run coverage (ignorar)
+
+Roda o Jest, para verificar o `code coverage`
+
+### npm run eslint
+
+Roda o eslint. Para o desenvolvimento, foi adotado o `eslint-config-airbnb`, com algumas alterações.
+
+### npm run storybook
+
+Roda o ambiente `react-storybook`. Não possui todos os componentes visuais (como os detalhes de uma edição).
+
+### npm run analyze
+
+Roda o `webpack-bundle-analyzer`.
+
+### npm run deploy
+
+Publica os arquivos no servidor do Google ([Firebase](https://firebase.google.com/?hl=pt-br)).
+
+## README original
+
+Crie uma aplicação utilizando as Api's do portal Developers da Marvel. As tarefas são as seguintes:
 
 ##### Lista dos quadrinhos do Homem de Ferro ###
 Crie uma lista de todas as edições de quadrinhos que o Homem de Ferro aparece ordenado por data. Cada item da lista deve conter imagem, titulo, descrição e data da edição.

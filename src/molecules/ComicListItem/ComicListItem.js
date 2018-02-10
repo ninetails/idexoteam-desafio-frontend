@@ -26,6 +26,7 @@ const styles = {
     bg: {
       backgroundPosition: 'center center',
       backgroundSize: 'cover',
+      borderRadius: '5px',
       bottom: 0,
       content: '',
       left: 0,
@@ -36,6 +37,7 @@ const styles = {
     },
     gradient: {
       backgroundImage: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.6), #000)',
+      borderRadius: '5px',
       bottom: 0,
       content: '',
       left: 0,
