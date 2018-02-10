@@ -8,6 +8,7 @@ const style = {
   display: 'flex',
   flexDirection: 'row',
   height: '100vh',
+  overflow: 'hidden',
   width: '100vw',
   '@media (min-width : 992px)': {
     maxHeight: '576px',

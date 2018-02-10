@@ -26,6 +26,11 @@ export default class MarvelComicListContainer extends PureComponent {
   }
 
   next = () => {
+    if (this.state.loading || this.state.data.length >= this.state.total) {
+      return;
+    }
+
+    this.setState(state => ({ ...state, loading: true }));
     ironManComics(this.state.query)
       .then(res => res.json())
       .then(res => this.setState(state => ({
@@ -37,11 +42,13 @@ export default class MarvelComicListContainer extends PureComponent {
         query: {
           ...state.query,
           offset: state.query.offset + state.query.limit
-        }
+        },
+        loading: false
       })))
       .catch(err => this.setState(state => ({
         ...state,
-        err
+        err,
+        loading: false
       }), console.error.bind(console))); // eslint-disable-line no-console
   }
 

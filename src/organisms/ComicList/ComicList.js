@@ -13,6 +13,7 @@ const styles = {
   },
   wrapper: {
     height: '100%',
+    overflow: 'auto',
     width: '100%'
   }
 };
@@ -44,6 +45,12 @@ export class ComicList extends PureComponent {
     }
   }
 
+  onEnter = entry => {
+    if (this.props.data.length - this.props.data.indexOf(entry) < 10) {
+      this.props.next();
+    }
+  };
+
   refList = el => {
     if (!this.list) {
       if (this.props.registerScroll) {
@@ -63,7 +70,7 @@ export class ComicList extends PureComponent {
     return (
       <div style={[styles.wrapper]}>
         <ul ref={this.refList} style={[styles.list]}>
-          {data.map(entry => <ComicListItem key={entry.id} data={entry} />)}
+          {data.map(entry => <ComicListItem key={entry.id} data={entry} onEnter={this.onEnter} />)}
         </ul>
       </div>
     );

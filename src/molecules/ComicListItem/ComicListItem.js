@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { Link } from 'react-router-dom';
+import Waypoint from 'react-waypoint';
 import ComicListItemTime from '../../atoms/ComicListItemTime';
 import ComicListItemThumb from '../../atoms/ComicListItemThumb';
 import ComicListItemTitle from '../../atoms/ComicListItemTitle';
@@ -43,42 +44,84 @@ const styles = {
       top: 0,
       zIndex: -1
     }
+  },
+  more: {
+    display: 'inline-block',
+    float: 'right',
+    fontWeight: 'bold',
+    textAlign: 'right',
+    '@media (min-width: 768px)': {
+      display: 'none'
+    }
   }
 };
 
-const ComicListItem = ({ data }) => {
-  const thumbUrl = data.thumbnail ? `${data.thumbnail.path}.${data.thumbnail.extension}` : null;
-  const onsaleDate = data.dates && data.dates.find(date => date.type === 'onsaleDate').date;
+export class ComicListItem extends PureComponent {
+  static propTypes = {
+    data: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      thumbnail: PropTypes.shape({
+        path: PropTypes.string.isRequired,
+        extension: PropTypes.string.isRequired
+      }),
+      dates: PropTypes.arrayOf(PropTypes.shape({
+        type: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired
+      }))
+    }).isRequired,
+    onEnter: PropTypes.func
+  };
 
-  return (
-    <li style={styles.li}>
-      <Link to={`/${data.id}`} style={{ ...styles.link }}>
-        {thumbUrl && <div style={[styles.link.bg, { backgroundImage: `url('${thumbUrl}')` }]} aria-hidden="true" />}
-        <div style={styles.link.gradient} aria-hidden="true" />
-        {thumbUrl && <ComicListItemThumb src={thumbUrl} alt={`Capa da edição ${data.title}`} />}
-        {onsaleDate && <ComicListItemTime dateTime={onsaleDate} />}
-        <ComicListItemTitle>{data.title}</ComicListItemTitle>
-        <ComicListItemDescription>{data.description}</ComicListItemDescription>
-        <div style={{ clear: 'both' }} aria-hidden="true" />
-      </Link>
-    </li>
-  );
-};
+  static defaultProps = {
+    onEnter: () => undefined
+  };
 
-ComicListItem.propTypes = {
-  data: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    thumbnail: PropTypes.shape({
-      path: PropTypes.string.isRequired,
-      extension: PropTypes.string.isRequired
-    }),
-    dates: PropTypes.arrayOf(PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired
-    }))
-  }).isRequired
-};
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      render: false
+    };
+  }
+
+  toRender = data =>
+    () =>
+      !this.state.render && this.setState(
+        () => ({ render: true }),
+        () => this.props.onEnter(data)
+      );
+
+  render() {
+    const { data } = this.props;
+
+    if (!this.state.render) {
+      return (
+        <li style={{ height: '100px' }}>
+          <Waypoint onEnter={this.toRender(data)} />
+        </li>
+      );
+    }
+
+    const thumbUrl = data.thumbnail ? `${data.thumbnail.path}.${data.thumbnail.extension}` : null;
+    const onsaleDate = data.dates && data.dates.find(date => date.type === 'onsaleDate').date;
+
+    return (
+      <li style={styles.li}>
+        <Link to={`/${data.id}`} style={{ ...styles.link }}>
+          {thumbUrl && <div style={[styles.link.bg, { backgroundImage: `url('${thumbUrl}')` }]} aria-hidden="true" />}
+          <div style={styles.link.gradient} aria-hidden="true" />
+          {thumbUrl && <ComicListItemThumb src={thumbUrl} alt={`Capa da edição ${data.title}`} />}
+          {onsaleDate && <ComicListItemTime dateTime={onsaleDate} />}
+          <ComicListItemTitle>{data.title}</ComicListItemTitle>
+          <ComicListItemDescription>{data.description}</ComicListItemDescription>
+          <div style={styles.more}>ver detalhes &raquo;</div>
+          <div style={{ clear: 'both' }} aria-hidden="true" />
+        </Link>
+      </li>
+    );
+  }
+}
 
 export default Radium(ComicListItem);
