@@ -78,6 +78,7 @@ export class ComicList extends PureComponent {
 
     return (
       <div style={[styles.wrapper]}>
+        <h2 className="visually-hidden">Listagem de HQ do Homem de Ferro</h2>
         <ul ref={this.refList} style={[styles.list]}>
           {data.map(entry => (
             <ComicListItem key={entry.id} location={location} data={entry} onEnter={this.onEnter} />

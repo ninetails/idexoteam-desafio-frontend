@@ -11,6 +11,12 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
 
     <title>Starkdex</title>
+    <meta name="description" content="O Starkdex é uma listagem de edições de quadrinhos do Homem de Ferro, utilizando React e a API da Marvel.">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Starkdex">
+    <meta property="og:title" content="Starkdex - Listagem de Histórias em Quadrinho do Homem de Ferro">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="O Starkdex é uma listagem de edições de quadrinhos do Homem de Ferro, utilizando React e a API da Marvel.">
 
     <style>
       html {
@@ -20,6 +26,7 @@
         background-size: cover;
         box-sizing: border-box;
         font-family: sans-serif;
+        overflow: hidden;
         text-rendering: optimizeLegibility;
         -webkit-text-size-adjust: 100%;
       }
@@ -36,6 +43,7 @@
         background-color: rgba(0, 0, 0, 0.75);
         margin: 0;
         padding: 0;
+        overflow: hidden;
       }
 
       noscript, #root {
@@ -44,10 +52,22 @@
         flex-direction: column;
         height: 100vh;
         justify-content: center;
+        overflow: hidden;
       }
 
       noscript img, .loading img {
         max-width: 250px;
+      }
+
+      .visually-hidden {
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px, 1px, 1px, 1px);
+        padding:0 !important;
+        border:0 !important;
+        height: 1px !important;
+        width: 1px !important;
+        overflow: hidden;
       }
     </style>
   </head>
@@ -56,6 +76,8 @@
       <img src="./images/nyan-cat.svg" role="img" aria-label="Logo nyan cat" />
       <p>You need to enable JavaScript to run this app.</p>
     </noscript>
+    <h1 class="visually-hidden">Starkdex</h1>
+    <p class="visually-hidden">O Starkdex é uma listagem de edições de quadrinhos do Homem de Ferro, utilizando React e a API da Marvel.</p>
     <div id="root">
       <div class="loading">
         <img src="./images/nyan-cat.svg" role="img" aria-label="Logo nyan cat" />
