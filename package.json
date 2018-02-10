@@ -4,6 +4,7 @@
   "homepage": "https://starkdex-2e3b2.firebaseapp.com/",
   "private": true,
   "dependencies": {
+    "ellipsize": "0.0.3",
     "fecha": "^2.3.2",
     "prop-types": "^15.6.0",
     "radium": "^0.21.2",
