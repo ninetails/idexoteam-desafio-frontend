@@ -14,6 +14,10 @@
 
     <style>
       html {
+        background-attachment: fixed;
+        background-image: url('./images/wallpaper.jpg');
+        background-position: center left;
+        background-size: cover;
         box-sizing: border-box;
         font-family: sans-serif;
         text-rendering: optimizeLegibility;
@@ -29,10 +33,7 @@
       }
 
       body {
-        background-attachment: fixed;
-        background-image: url('./images/wallpaper.jpg');
-        background-position: center left;
-        background-size: cover;
+        background-color: rgba(0, 0, 0, 0.75);
         margin: 0;
         padding: 0;
       }
@@ -52,12 +53,12 @@
   </head>
   <body>
     <noscript>
-      <img src="./nyan-cat.svg" role="img" aria-label="Logo nyan cat" />
+      <img src="./images/nyan-cat.svg" role="img" aria-label="Logo nyan cat" />
       <p>You need to enable JavaScript to run this app.</p>
     </noscript>
     <div id="root">
       <div class="loading">
-        <img src="./nyan-cat.svg" role="img" aria-label="Logo nyan cat" />
+        <img src="./images/nyan-cat.svg" role="img" aria-label="Logo nyan cat" />
         <p>Carregando...</p>
       </div>
     </div>
