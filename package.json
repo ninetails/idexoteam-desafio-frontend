@@ -11,6 +11,7 @@
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
+    "react-waypoint": "^8.0.0",
     "urijs": "^1.19.0"
   },
   "scripts": {
