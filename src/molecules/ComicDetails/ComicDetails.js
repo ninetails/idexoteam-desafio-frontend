@@ -35,13 +35,11 @@ export const ComicDetails = ({
   dates,
   characters,
   creators,
-  series,
-  ...props
+  series
 }) => {
   const thumbUrl = thumbnail
     ? `${thumbnail.path}.${thumbnail.extension}`.replace(/^https?:\/\//i, 'https://')
     : null;
-  console.log(props);
 
   return (
     <DocumentTitle title={title}>
