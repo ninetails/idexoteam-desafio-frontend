@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Radium from 'radium';
 import { NavLink } from 'react-router-dom';
 import Waypoint from 'react-waypoint';
-import ComicListItemTime from '../../atoms/ComicListItemTime';
+import Time from '../../atoms/Time';
 import ComicListItemThumb from '../../atoms/ComicListItemThumb';
 import ComicListItemTitle from '../../atoms/ComicListItemTitle';
 import ComicListItemDescription from '../../atoms/ComicListItemDescription';
@@ -118,7 +118,7 @@ export class ComicListItem extends PureComponent {
 
           {thumbUrl && <ComicListItemThumb src={thumbUrl} alt={`Capa da edição ${data.title}`} />}
 
-          {onsaleDate && <ComicListItemTime dateTime={onsaleDate} />}
+          {onsaleDate && <Time dateTime={onsaleDate} />}
 
           <ComicListItemTitle>{data.title}</ComicListItemTitle>
 

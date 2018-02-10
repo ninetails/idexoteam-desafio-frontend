@@ -11,14 +11,14 @@ const style = {
 const formatDate = dateTime =>
   format(parse(dateTime, 'YYYY-MM-DDTHH:mm:ss'), 'DD/MM/YYYY');
 
-export const ComicListItemTime = ({ dateTime }) => (
+export const Time = ({ dateTime }) => (
   <time dateTime={dateTime} style={style}>
     {formatDate(dateTime)}
   </time>
 );
 
-ComicListItemTime.propTypes = {
+Time.propTypes = {
   dateTime: PropTypes.string.isRequired
 };
 
-export default Radium(ComicListItemTime);
+export default Radium(Time);

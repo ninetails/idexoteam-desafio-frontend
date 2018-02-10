@@ -3,7 +3,7 @@ import { storiesOf, addDecorator } from '@storybook/react'; // eslint-disable-li
 import { StyleRoot } from 'radium';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import ComicListItemTime from '../src/atoms/ComicListItemTime';
+import Time from '../src/atoms/Time';
 import ComicListItemThumb from '../src/atoms/ComicListItemThumb';
 import ComicListItemTitle from '../src/atoms/ComicListItemTitle';
 import ComicListItemDescription from '../src/atoms/ComicListItemDescription';
@@ -23,8 +23,8 @@ addDecorator(story => (
 ));
 
 storiesOf('atoms/ComicListItem', module)
-  .add('ComicListItemTime', () => (
-    <ComicListItemTime dateTime="2018-02-09T21:06:30" />
+  .add('Time', () => (
+    <Time dateTime="2018-02-09T21:06:30" />
   ))
   .add('ComicListItemThumb', () => (
     <ComicListItemThumb src="http://i.annihil.us/u/prod/marvel/i/mg/c/b0/5a68ecca9083f.jpg" alt="Capa de teste" />

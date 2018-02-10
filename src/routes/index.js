@@ -3,20 +3,23 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
+import DocumentTitle from 'react-document-title';
 import MarvelComicListContainer from '../containers/MarvelComicListContainer';
-import ComicDetails from '../pages/ComicDetails';
+import ComicDetailsPage from '../pages/ComicDetailsPage';
 import StarkDexContainer from '../organisms/StarkDexContainer';
 
 export default () => (
-  <Router>
-    <Route
-      path="/"
-      component={props => (
-        <StarkDexContainer {...props}>
-          <MarvelComicListContainer {...props} />
-          <Route path="/:comicId" component={ComicDetails} />
-        </StarkDexContainer>
-      )}
-    />
-  </Router>
+  <DocumentTitle title="Starkdex">
+    <Router>
+      <Route
+        path="/"
+        component={props => (
+          <StarkDexContainer {...props}>
+            <MarvelComicListContainer {...props} />
+            <Route path="/:comicId" component={ComicDetailsPage} />
+          </StarkDexContainer>
+        )}
+      />
+    </Router>
+  </DocumentTitle>
 );
