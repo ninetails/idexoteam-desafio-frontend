@@ -104,7 +104,9 @@ export class ComicListItem extends PureComponent {
       );
     }
 
-    const thumbUrl = data.thumbnail ? `${data.thumbnail.path}.${data.thumbnail.extension}` : null;
+    const thumbUrl = data.thumbnail
+      ? `${data.thumbnail.path}.${data.thumbnail.extension}`.replace(/^https?:\/\//i, 'https://')
+      : null;
     const onsaleDate = data.dates && data.dates.find(date => date.type === 'onsaleDate').date;
 
     return (
